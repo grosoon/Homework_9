@@ -9,5 +9,9 @@ public class Player {
 	public void addToInventory(Item i){
 		
 	}
+	
+	public void mixDirections(){
+		
+	}
 
 }
