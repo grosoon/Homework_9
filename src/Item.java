@@ -16,17 +16,30 @@ public class Item {
 		name = applyAdjectives();
 	}
 	
+	/* applies an adjective to the name from the above list so as to
+	 * add variety in items 
+	 */
+	
 	public String applyAdjectives(){
 		Random rand = new Random();
 		return ADJECTIVES[rand.nextInt(ADJECTIVES.length)] + " " + name; 
 	}
 	
+	
+	/* allows the player to look at an item without
+	 * disturbing it.
+	 */
 	public String lookAt(){
 		return "It appears to be a " + name + ". You can pick it up, but it may not do much";
 	}
 	
-	public void pickUp(Player player, HashMap<Point2D, Room> map){
+	/*picks up an item that doesn't do anything
+	 * 
+	 */
+	
+	public String pickUp(Player player, HashMap<Point2D, Room> map){
 		player.addToInventory(this);
+		return "You pick up the " + name + " and put it in your pocket";
 	}
 
 }

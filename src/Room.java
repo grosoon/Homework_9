@@ -4,7 +4,7 @@ public class Room {
 	public String name;
 	public Item[] items;
 	
-	
+	//creates a new room and generates the items
 	public Room(String name){
 		this.name = name;
 		generateItems();

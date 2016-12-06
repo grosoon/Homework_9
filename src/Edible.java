@@ -11,13 +11,17 @@ public class Edible extends Item{
 		name = ENAMES[rand.nextInt(ENAMES.length)];
 		name = applyAdjectives();
 	}
+	
+	// looks at an edible object
 	@Override
 	public String lookAt(){
 		return "It looks like a " + name + ". It looks like you can eat it";
 	}
 	
+	//eats an edible object, and calls mixDirections on player
 	@Override
-	public void pickUp(Player player, HashMap<Point2D, Room> map){
+	public String pickUp(Player player, HashMap<Point2D, Room> map){
 		player.mixDirections();
+		return "You eat the " + name + " and start to feel a bit disoriented";
 	}
 }
