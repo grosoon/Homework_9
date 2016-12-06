@@ -10,6 +10,11 @@ public class Room {
 		generateItems();
 	}
 	
+	
+	/*This function randomly fills the room
+	 * with 0-3 items with the number and 
+	 * type being randomly selected.
+	 */
 	private void generateItems(){
 		int count = 0;
 		Random rand = new Random();
