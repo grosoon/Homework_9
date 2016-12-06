@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Random;
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 public class Item {
 	// creates a new item that doesn't do anything
@@ -37,7 +37,7 @@ public class Item {
 	 * 
 	 */
 	
-	public String pickUp(Player player, HashMap<Point2D, Room> map){
+	public String pickUp(Player player, HashMap<Point, Room> map){
 		player.addToInventory(this);
 		return "You pick up the " + name + " and put it in your pocket";
 	}

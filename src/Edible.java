@@ -1,4 +1,4 @@
-import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class Edible extends Item{
 	
 	//eats an edible object, and calls mixDirections on player
 	@Override
-	public String pickUp(Player player, HashMap<Point2D, Room> map){
+	public String pickUp(Player player, HashMap<Point, Room> map){
 		player.mixDirections();
 		return "You eat the " + name + " and start to feel a bit disoriented";
 	}
