@@ -1,14 +1,17 @@
+import java.awt.Point;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class TextAdventure {
 	
 	private static Scanner input;
 	private static String playerName;
-	private static Mansion mansion;
+	private static Map<Point, Room> mansionMap;
 	
 	public static void main (String[] args) {
 		input = new Scanner(System.in);
-		mansion = new Mansion();
+		mansionMap = makeMap();
 		//Welcome
 		System.out.println("Please enter your name.");
 		playerName = input.nextLine();
@@ -37,6 +40,18 @@ public class TextAdventure {
 		System.out.printf("Congratulations, %s, you have won!\n", playerName);
 		input.close();
 		System.exit(0);
+	}
+	
+	private static Map<Point, Room> makeMap() {
+		Map<Point, Room> someMap = new HashMap<Point, Room>();
+		for (int x = 0; x < 5; x++) {
+			for (int y = 0; y < 5; y ++) {
+				Point coord = new Point(x, y);
+				Room someRoom = new Room("Test");
+				someMap.put(coord, someRoom);
+			}
+		}
+		return someMap;
 	}
 	
 }
