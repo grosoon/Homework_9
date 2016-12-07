@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class Edible extends Item{
 	// creates an item that can be consumed
-	public static final String[] ENAMES = {"",""};
+	public static final String[] ENAMES = {"bread","cookie", "potion", "sludge", "soda",
+			"slushie", "spam", "power bar", "hair ball", "drink"};
 	
 	public Edible(){
 		Random rand = new Random();
