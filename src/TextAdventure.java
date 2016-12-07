@@ -9,7 +9,7 @@ public class TextAdventure {
 	private static Scanner input;
 	private static String playerName;
 	private static Map<Point, Room> mansionMap;
-	private static final int MANSIONSIZE = 10;
+	private static final int MANSIONSIZE = 4;
 	private static final String[] ROOMNAMES = {"dining room", "bathroom", "bedroom", "guest bedroom"}; 
 	
 	public static void main (String[] args) {
@@ -17,7 +17,7 @@ public class TextAdventure {
 		 * This sets up the initial gamestate.
 		 */
 		int turns = 0;
-		Scanner input = new Scanner(System.in);
+		input = new Scanner(System.in);
 		mansionMap = makeMap(MANSIONSIZE);
 		Enemy badGuy = new Enemy(MANSIONSIZE);
 		Player pc = new Player();
@@ -43,7 +43,6 @@ public class TextAdventure {
 				System.out.println("You hear the shuffling feet of the murderer...");
 			}
 			if (pc.position.x == badGuy.position.x && pc.position.y == badGuy.position.y) {
-				System.out.println("...and that's because he's in the room with you!");
 				lose();
 			}
 			System.out.println();
@@ -73,8 +72,13 @@ public class TextAdventure {
 	}
 	
 	private static void lose() {
-		System.out.println("You have lost!");
+		System.out.println("...and that's because he's in the room with you!");
+		System.out.println();
+		System.out.println("W H A T   A   T E R R I B L E   F A T E");
+		System.out.println();
 		System.out.printf("Fare thee well, %s, we will not forget you!\n", playerName);
+		input.close();
+		System.exit(0);
 	}
 	
 	private static void win() {
