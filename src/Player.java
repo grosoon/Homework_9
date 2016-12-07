@@ -8,6 +8,7 @@ public class Player {
 	public Point position;
 	public List<Item> inventory;
 	public int items;
+	private boolean alive;
 	public static final int MAXITEMS = 10;
 	
 	public Player(){
@@ -16,7 +17,11 @@ public class Player {
 		position = new Point(0,0);
 		inventory = new ArrayList<Item>();
 		items = 0;
-		
+		alive = true;
+	}
+	
+	public boolean isAlive() {
+		return alive;
 	}
 	
 	public void addToInventory(Item i){
