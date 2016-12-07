@@ -9,8 +9,9 @@ public class TextAdventure {
 	private static Scanner input;
 	private static String playerName;
 	private static Map<Point, Room> mansionMap;
-	private static final int MANSIONSIZE = 4;
-	private static final String[] ROOMNAMES = {"dining room", "bathroom", "bedroom", "guest bedroom"}; 
+	private static final int MANSIONSIZE = 10;
+	private static final String[] ROOMNAMES = {"dining room", "bathroom", "bedroom", 
+			"living room", "guest bedroom", "treasure vault", "ballroom", "great hall"}; 
 	
 	public static void main (String[] args) {
 		/*
@@ -26,7 +27,7 @@ public class TextAdventure {
 		 */
 		System.out.println("Please enter your name.");
 		playerName = input.nextLine();
-		System.out.printf("Hello %s, and welcome to [insert welcome here].\n", playerName);
+		System.out.printf("Hello %s, and welcome to THE MANSION.\n", playerName);
 		System.out.println("Your goal? To escape the mansion with your life.");
 		System.out.println();
 		/*
@@ -36,7 +37,7 @@ public class TextAdventure {
 		while (pc.isAlive()) {
 			//This deals with things related to the room position, and counts the turn.
 			Room cur = mansionMap.get(pc.position);
-			System.out.printf("====Turn %d====\n", turns++);
+			System.out.printf("========Turn %d========\n", turns++);
 			System.out.printf("You stand in the %s.\n", cur.name);
 			if (Math.abs(pc.position.x - badGuy.position.x) <= 2 && 
 					Math.abs(pc.position.y - badGuy.position.y) <= 2) {
@@ -55,12 +56,15 @@ public class TextAdventure {
 			//This prints out the items in the room.
 			System.out.printf("The %s contains the following items:\n", cur.name);
 			for (Item i : cur.items) {
-				System.out.printf("%s\n", i.name);
+				System.out.printf("- %s\n", i.name);
 			}
 			System.out.println();
 			//This deals with player actions.
 			System.out.println("What do you want to do?");
 			String action = input.nextLine();
+			
+			
+			
 			System.out.println();
 			//This updates the enemy
 			badGuy.update();
