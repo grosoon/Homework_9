@@ -27,6 +27,8 @@ public class Player {
 	public void addToInventory(Item i){
 		if(items < MAXITEMS){
 			inventory.add(i);
+		} else {
+			System.out.println("You're carrying too much right now to pick THAT up!");
 		}
 	}
 	
