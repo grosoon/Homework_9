@@ -21,8 +21,8 @@ public class Edible extends Item{
 	
 	//eats an edible object, and calls mixDirections on player
 	@Override
-	public String pickUp(Player player, HashMap<Point, Room> map){
-		player.mixDirections();
+	public String Use(Player player){
+		player.remove(this);
 		return "You eat the " + name + " and start to feel a bit disoriented";
 	}
 }

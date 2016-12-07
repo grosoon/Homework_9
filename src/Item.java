@@ -41,5 +41,9 @@ public class Item {
 		player.addToInventory(this);
 		return "You pick up the " + name + " and put it in your pocket";
 	}
+	
+	public String Use(Player player){
+		return "nothing happened";
+	}
 
 }
