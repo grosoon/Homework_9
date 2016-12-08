@@ -21,8 +21,31 @@ public class Edible extends Item{
 	
 	//eats an edible object, and calls mixDirections on player
 	@Override
-	public String Use(Player player){
+	public String Use(Player player, Enemy e){
+		//removes the item from the player's inventory
 		player.remove(this);
-		return "You eat the " + name + " and start to feel a bit disoriented";
+		//determines the effect of the edible, enhancing/diminishing senses
+		Random rand = new Random();
+		int change = rand.nextInt(7) - 3;
+		
+		//applys affect and corrects noise to remain between 0-3
+		e.noise += change;
+		if(e.noise > 3){
+			e.noise = 3;
+		} else if(e.noise < 0){
+			e.noise = 0;
+		}
+		
+		//determines message to return
+		String effect = "";
+		if(change < 0){
+			effect = "feel like you cant hear as well.";
+		} else if(change == 0){
+			effect = "nothing happens.";
+		} else {
+			effect = "you can feel your senses hightening.";
+		}
+		// returns message	
+		return "You eat the " + name + " and " + effect;
 	}
 }

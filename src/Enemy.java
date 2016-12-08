@@ -4,36 +4,71 @@ import java.util.Random;
 public class Enemy {
 
 	public Point position;
-	private Random rand;
-	private int maxX;
-	private int maxY;
+	public int noise;
 
 	/*
 	 * The enemy MUST start in the corner of the mansion, since the max of their movement
 	 * is based on their starting position.
 	 */
-	public Enemy(int corner) {
-		maxX = corner;
-		maxY = corner;
-		position = new Point(corner, corner);
+	public Enemy() {
+		Random rand = new Random();
+		position = new Point(rand.nextInt(10)+2, rand.nextInt(10)+2);
+		noise = 1;
 	}
 
 	/*
 	 * This method updates the enemy's position, and is called once each main loop.
-	 * The enemy moves either 0, 1, or 2 tiles each turn in both the x and y directions.
+	 * The enemy moves either 0 or 1 tiles each turn in both the x and y directions.
 	 */
 	public void update() {
-		rand = new Random();
-		int dx = maxX + 1;
-		int dy = maxY + 1;
+		Random rand = new Random();
+		int dx = rand.nextInt(3) - 1;
+		int dy = rand.nextInt(3) - 1;
 		
-		while (dx + position.x > maxX || dx + position.x < 0) {
-			dx = Math.min(rand.nextInt(4) - 2, maxX);
-		}
-		while (dy + position.y > maxY || dy + position.y < 0) {
-			dy = Math.min(rand.nextInt(4) - 2, maxY);
-		}
 		position.translate(dx, dy);
 		//System.out.printf("enemy location: %d, %d\n", position.x, position.y);
+	}
+	
+	public String makeNoise(Player p){
+		if(noise <= 2){
+			if(position.distance(p.position) <= noise){
+				return "You hear footsteps nearby";
+			} else{
+				return "";
+			}
+		} else {
+			String dir = "";
+			double dx = p.position.getX() - position.getX();
+			double dy = p.position.getY() - position.getY();
+			if(dx < 0){
+				if(dy < 0){
+					dir = "Northeast";
+				} else if(dy == 0){
+					dir = "North";
+				} else {
+					dir = "Northwest";
+				}
+			} else if(dx == 0){
+				if(dy < 0){
+					dir = "East"; 
+				} else {
+					dir = "West";
+				}
+			} else {
+				if(dy < 0){
+					dir = "Southeast";
+				} else if(dy == 0){
+					dir = "South";
+				} else {
+					dir = "Southwest";
+				}
+			}
+			if(position.distance(p.position) <= 2){
+				return "You hear footsteps to the" + dir;
+			} else{
+				return "";
+			}
+			
+		}
 	}
 }

@@ -12,8 +12,8 @@ public class Player {
 	public static final int MAXITEMS = 10;
 	
 	public Player(){
-		highestX = 0;
-		highestY = 0;
+		highestX = 1;
+		highestY = 1;
 		position = new Point(0,0);
 		inventory = new ArrayList<Item>();
 		items = 0;
@@ -39,6 +39,12 @@ public class Player {
 			position.x--;
 			break;
 			
+		}
+		if(position.getY() < 0){
+			position.y = 0;
+		}
+		if(position.getX() < 0){
+			position.x = 0;
 		}
 	}
 	

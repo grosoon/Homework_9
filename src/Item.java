@@ -33,7 +33,7 @@ public class Item {
 		return "It appears to be a " + name + ". You can pick it up, but it may not do much";
 	}
 	
-	/*picks up an item that doesn't do anything
+	/*picks up an item that doesn't do anything upon pickup
 	 * 
 	 */
 	
@@ -42,8 +42,9 @@ public class Item {
 		return "You pick up the " + name + " and put it in your pocket";
 	}
 	
-	public String Use(Player player){
-		return "nothing happened";
+	// uses an item, in this case the item does nothing
+	public String Use(Player player, Enemy e){
+		return "Nothing Happened";
 	}
 
 }

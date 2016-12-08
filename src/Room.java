@@ -34,5 +34,16 @@ public class Room {
 		}
 	}
 	
+	public void remove(Item i){
+		Item[] temp = new Item[items.length - 1];
+		int index = 0;
+		for(Item cur : items){
+			if(!(i.equals(cur))){
+				temp[index++] = cur;
+			}
+		}
+		items = temp;
+	}
+	
 	
 }
