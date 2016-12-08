@@ -7,7 +7,8 @@ public class Trigger extends Item{
 			"paper weight", "plate", "cup", "bottle", "candlestick", "book"};
 	public static final String[] TRANSPORTS = {"fall down a slide", "trip through a secret passage", 
 			"pass out and wake up after feeling yourself dropped to the floor",
-			"go blind and run through the house in panic, suddenly regaining your vision upon stopping"};
+			"go blind and run through the house in panic, eventually regaining your vision upon "
+			+ "stopping"};
 	
 	public Trigger(){
 		Random rand = new Random();
@@ -30,7 +31,7 @@ public class Trigger extends Item{
 		
 		return "You pick up the " + name + " and suddenly\n" + 
 		TRANSPORTS[rand.nextInt(TRANSPORTS.length)] + 
-		".\n You find yourself in " + known;
+		".\nYou find yourself in " + known;
 	}
 	
 	//creates an item that triggers the locking or unlocking of a door

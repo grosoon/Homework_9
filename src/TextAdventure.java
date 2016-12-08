@@ -10,29 +10,46 @@ public class TextAdventure {
 	private static String playerName;
 	private static Map<Point, Room> mansionMap;
 	private static boolean attack = false;
+	private static Player pc;
+	private static int turns;
 	private static final String[] ROOMNAMES = {"dining room", "bathroom", "bedroom", 
 			"living room", "guest bedroom", "treasure vault", "ballroom", "great hall", "hallway",
-			"kitchen", "pantry", "study"}; 
+			"kitchen", "pantry", "study", "armory", "dungeon", "great staircase", "library"}; 
 	
 	public static void main (String[] args) {
 		/*
 		 * This sets up the initial gamestate.
 		 */
 		Random rand = new Random();
-		int turns = 0;
+		turns = 0;
 		input = new Scanner(System.in);
 		mansionMap = new HashMap<Point, Room>();
 		Enemy badGuy = new Enemy();
-		Player pc = new Player();
+		pc = new Player();
 		/*
 		 * This welcomes the player to their game and prompts them for their name.
 		 */
 		System.out.println("Please enter your name.");
 		playerName = input.nextLine();
-		System.out.printf("Hello %s, and welcome to THE MANSION.\n", playerName);
-		System.out.println("Your goal? To escape the mansion with your life.");
-		System.out.println("In order to to do this, you must find the IMPORTANT KEY, and bring"
+		System.out.printf("Hello %s, and welcome to your worst nightmare.\n", playerName);
+		System.out.println("You're just a poor college student, driving home for the holidays. "
+				+ "While trying to find shelter from\na thunderstorm, you decided to try staying "
+				+ "in that spooky looking mansion on the hill, unwittingly\nfalling victim to one"
+				+ " of the worst horror movie cliches!");
+		System.out.println("Your goal? To escape the mansion as fast as possible. Why so fast? "
+				+ "Because a spooky mansion isn't the\nonly cliche you've run into. There's"
+				+ " a killer in the mansion, and they're just dying to meet you...");
+		System.out.println();
+		System.out.println("In order to escape, you must find the IMPORTANT KEY, and bring"
 				+ " it back to the room that you started in.");
+		System.out.println("The killer is constantly trying to find you. If the killer ends up"
+				+ " in the same room as you, it's game over.");
+		System.out.println("Using items can sometimes open up secret passages or change your "
+				+ "abilities.");
+		System.out.println("Commands:\n-Look at [item]\n-Look at inventory\n-Pick up [item]\n"
+				+ "-Attack\n-Wait");
+		System.out.println("Inventory Specific Commands (only usable when looking at inventory):"
+				+ "\n-Use [item]\n-Drop [item]\n-Exit");
 		System.out.println();
 		/*
 		 * This loops is the main logic of the game. It prints out the number of turns, and
@@ -54,25 +71,32 @@ public class TextAdventure {
 
 			System.out.printf("========Turn %d========\n", turns++);
 			System.out.printf("You stand in the %s.\n", cur.name);
-			if (!attack && pc.position.x == badGuy.position.x && pc.position.y == badGuy.position.y) {
+			System.out.printf(badGuy.makeNoise(pc));
+			if (!attack && pc.position.x == badGuy.position.x && 
+					pc.position.y == badGuy.position.y) {
 				lose();
+			} else if (attack && pc.position.x == badGuy.position.x && 
+					pc.position.y == badGuy.position.y) {
+				System.out.println("...Because the killer is in the room with you!\n"
+						+ "He lunges at you, but despite your pounding heart and shaking arms you"
+						+ " manage to hold him off!\nYou're not sure you"
+						+ " can hold him off again, though...");
+				attack = false;
+			}
+			if(known){
+				System.out.println("This room feels familiar.");
 			}
 			
-			System.out.println(badGuy.makeNoise(pc));
-			
-			//Special messages (may delete later)
+			//Special messages
 			if (pc.position.equals(new Point(13, 13))) {
 				System.out.println("This room makes you feel unlucky...");
-				System.out.println();
 			} else if (pc.position.equals(new Point(-1, -1))) {
 				System.out.println("You feel as if you have cheated.");
-				System.out.println();
 			} else if (pc.position.equals(new Point(0, 0))) {
 				System.out.println("This is the room containing the exit to the mansion, and is"
 						+ " the located in the southwest corner.");
-				System.out.println();
 			}
-			
+			System.out.println();
 			
 			//This prints out the items in the room.
 			System.out.printf("The %s contains the following items:\n", cur.name);
@@ -80,9 +104,6 @@ public class TextAdventure {
 				System.out.printf("- %s\n", i.name);
 			}
 			System.out.println();
-			if(known){
-				System.out.println("This room feels familiar.");
-			}
 			
 			
 			//Prompts the user for an action
@@ -182,7 +203,7 @@ public class TextAdventure {
 			
 			System.out.println();
 			//This updates the enemy
-			badGuy.update();
+			badGuy.update(pc, turns);
 		}
 		
 		//Cleanup
@@ -253,13 +274,13 @@ public class TextAdventure {
 			
 			System.out.println();
 			//This updates the enemy
-			e.update();
+			e.update(pc, turns);
 		}
 		
 	}
 
 	private static void lose() {
-		System.out.println("...and that's because he's in the room with you!");
+		System.out.println("...and that's because the killer is in the room with you!");
 		System.out.println();
 		System.out.println("W H A T   A   T E R R I B L E   F A T E");
 		System.out.println();
@@ -269,7 +290,7 @@ public class TextAdventure {
 	}
 	
 	private static void win() {
-		System.out.printf("Congratulations, %s, you have won!\n", playerName);
+		System.out.printf("Congratulations, %s, you have escaped!\n", playerName);
 		input.close();
 		System.exit(0);
 	}
