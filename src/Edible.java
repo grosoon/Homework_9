@@ -1,11 +1,10 @@
-import java.awt.Point;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Edible extends Item{
 	// creates an item that can be consumed
-	public static final String[] ENAMES = {"bread","cookie", "potion", "sludge", "soda",
-			"slushie", "spam", "power bar", "hair ball", "drink"};
+	public static final String[] ENAMES = {"bread", "cookie", "potion", "sludge", "soda",
+			"slushie", "spam", "power bar", "hair ball", "drink", "cake", "pie", "candy",
+			"bread", "sauce"};
 	
 	public Edible(){
 		Random rand = new Random();

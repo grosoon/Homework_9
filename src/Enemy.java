@@ -56,29 +56,29 @@ public class Enemy {
 			double dy = p.position.getY() - position.getY();
 			if(dx < 0){
 				if(dy < 0){
-					dir = "Northeast";
+					dir = "northeast";
 				} else if(dy == 0){
-					dir = "North";
+					dir = "north";
 				} else {
-					dir = "Northwest";
+					dir = "northwest";
 				}
 			} else if(dx == 0){
 				if(dy < 0){
-					dir = "East"; 
+					dir = "east"; 
 				} else {
-					dir = "West";
+					dir = "west";
 				}
 			} else {
 				if(dy < 0){
-					dir = "Southeast";
+					dir = "southeast";
 				} else if(dy == 0){
-					dir = "South";
+					dir = "south";
 				} else {
-					dir = "Southwest";
+					dir = "southwest";
 				}
 			}
 			if(position.distance(p.position) <= 2){
-				return "You hear footsteps to the" + dir + "...\n";
+				return "You hear footsteps to the " + dir + "...\n";
 			} else{
 				return "";
 			}

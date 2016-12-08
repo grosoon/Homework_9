@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Trigger extends Item{
 	public static final String[] NAMES = {"vase", "pouch", "orb", "ball", "lamp", 
-			"paper weight", "plate", "cup", "bottle", "candlestick", "book"};
+			"paper weight", "plate", "cup", "bottle", "candlestick", "book", "key"};
 	public static final String[] TRANSPORTS = {"fall down a slide", "trip through a secret passage", 
 			"pass out and wake up after feeling yourself dropped to the floor",
 			"go blind and run through the house in panic, eventually regaining your vision upon "

@@ -10,17 +10,21 @@ public class TextAdventure {
 	private static String playerName;
 	private static Map<Point, Room> mansionMap;
 	private static boolean attack = false;
+	private static int cooldown;
 	private static Player pc;
 	private static int turns;
 	private static final String[] ROOMNAMES = {"dining room", "bathroom", "bedroom", 
 			"living room", "guest bedroom", "treasure vault", "ballroom", "great hall", "hallway",
-			"kitchen", "pantry", "study", "armory", "dungeon", "great staircase", "library"}; 
+			"kitchen", "pantry", "study", "armory", "dungeon", "great staircase", "library",
+			"mystery room", "nursery", "playroom", "theatre", "foyer", "sauna", "baths",
+			"courtyard", "gardens", "gallery", "satuary", "coat room", "broom closet"}; 
 	
 	public static void main (String[] args) {
 		/*
 		 * This sets up the initial gamestate.
 		 */
 		Random rand = new Random();
+		cooldown = 0;
 		turns = 0;
 		input = new Scanner(System.in);
 		mansionMap = new HashMap<Point, Room>();
@@ -46,6 +50,8 @@ public class TextAdventure {
 				+ " in the same room as you, it's game over.");
 		System.out.println("Using items can sometimes open up secret passages or change your "
 				+ "abilities.");
+		System.out.println("Attacking the turn before the killer enters the room lets you fend"
+				+ " them off, but if you do there is a cooldown period.");
 		System.out.println("Commands:\n-Look at [item]\n-Look at inventory\n-Pick up [item]\n"
 				+ "-Attack\n-Wait");
 		System.out.println("Inventory Specific Commands (only usable when looking at inventory):"
@@ -81,12 +87,15 @@ public class TextAdventure {
 						+ "He lunges at you, but despite your pounding heart and shaking arms you"
 						+ " manage to hold him off!\nYou're not sure you"
 						+ " can hold him off again, though...");
-				attack = false;
+				cooldown = 5;
 			}
+			if (cooldown > 0) {
+				cooldown--;
+			}
+			attack = false;
 			if(known){
 				System.out.println("This room feels familiar.");
 			}
-			
 			//Special messages
 			if (pc.position.equals(new Point(13, 13))) {
 				System.out.println("This room makes you feel unlucky...");
@@ -114,7 +123,9 @@ public class TextAdventure {
 			
 			
 			if(action.toLowerCase().equals("attack")){
-				attack = true;
+				if (cooldown == 0) {
+					attack = true;
+				}
 				
 				
 				
@@ -280,7 +291,11 @@ public class TextAdventure {
 	}
 
 	private static void lose() {
-		System.out.println("...and that's because the killer is in the room with you!");
+		System.out.println("...the killer is in the room with you!");
+		if (cooldown > 0) {
+			System.out.println("You desperately try to fend them off, but you're too tired from last"
+					+ " time!");
+		}
 		System.out.println();
 		System.out.println("W H A T   A   T E R R I B L E   F A T E");
 		System.out.println();
