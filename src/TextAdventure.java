@@ -11,7 +11,8 @@ public class TextAdventure {
 	private static Map<Point, Room> mansionMap;
 	private static boolean attack = false;
 	private static final String[] ROOMNAMES = {"dining room", "bathroom", "bedroom", 
-			"living room", "guest bedroom", "treasure vault", "ballroom", "great hall"}; 
+			"living room", "guest bedroom", "treasure vault", "ballroom", "great hall", "hallway",
+			"kitchen", "pantry", "study"}; 
 	
 	public static void main (String[] args) {
 		/*
@@ -30,7 +31,8 @@ public class TextAdventure {
 		playerName = input.nextLine();
 		System.out.printf("Hello %s, and welcome to THE MANSION.\n", playerName);
 		System.out.println("Your goal? To escape the mansion with your life.");
-		System.out.println("In order to to do this");
+		System.out.println("In order to to do this, you must find the IMPORTANT KEY, and bring"
+				+ " it back to the room that you started in.");
 		System.out.println();
 		/*
 		 * This loops is the main logic of the game. It prints out the number of turns, and
@@ -63,8 +65,14 @@ public class TextAdventure {
 			//Special messages (may delete later)
 			if (pc.position.equals(new Point(13, 13))) {
 				System.out.println("This room makes you feel unlucky...");
+				System.out.println();
 			} else if (pc.position.equals(new Point(-1, -1))) {
 				System.out.println("You feel as if you have cheated.");
+				System.out.println();
+			} else if (pc.position.equals(new Point(0, 0))) {
+				System.out.println("This is the room containing the exit to the mansion, and is"
+						+ " the located in the southwest corner.");
+				System.out.println();
 			}
 			
 			
@@ -75,7 +83,7 @@ public class TextAdventure {
 			}
 			System.out.println();
 			if(known){
-				System.out.println("You feel like you've been here before");
+				System.out.println("This room feels familiar.");
 			}
 			
 			
@@ -98,7 +106,7 @@ public class TextAdventure {
 				
 				
 			} else if(action.length() < 7){
-				System.out.println("The command " + action + " is not recognized");
+				System.out.println("The command " + action + " is not recognized.");
 			} else {
 				
 				
@@ -115,7 +123,7 @@ public class TextAdventure {
 					}
 
 					if(!done){
-						System.out.println("There was no item named " + action.substring(8));
+						System.out.println("There was no item named " + action.substring(8) + ".");
 					}
 					
 					
@@ -133,7 +141,7 @@ public class TextAdventure {
 							}
 						}
 						if(!done){
-							System.out.println("There was no item named " + action.substring(8));
+							System.out.println("There was no item named " + action.substring(8) + ".");
 						}
 					}
 				} else if(action.substring(0, 2).toLowerCase().equals("go")){
@@ -149,7 +157,7 @@ public class TextAdventure {
 					} else if(action.substring(3).toLowerCase().equals("west")){
 						pc.move(3);
 					} else {
-						System.out.println("You cannot move " + action.substring(2));
+						System.out.println("You cannot move " + action.substring(2) + ".");
 					}
 				} else {
 					System.out.println(action + " not recognized as an option, please try again");
@@ -200,7 +208,7 @@ public class TextAdventure {
 				System.out.println(" - " + i.name);
 			}
 			System.out.println("You can drop an item, use an item, or exit your inventory.");
-			System.out.println("What do you want to do");
+			System.out.println("What do you want to do?");
 			String action = input.nextLine();
 			
 			if(action.equals("exit")){
@@ -216,7 +224,7 @@ public class TextAdventure {
 						}
 					}
 					if(!temp){
-						System.out.println("There was no item named " + action.substring(8));
+						System.out.println("There was no item named " + action.substring(8) + ".");
 					}
 				} else if(action.substring(0,4).toLowerCase().equals("drop")){
 					boolean temp = false;
@@ -228,7 +236,7 @@ public class TextAdventure {
 						}
 					}
 					if(!temp){
-						System.out.println("There was no item named " + action.substring(5));
+						System.out.println("There was no item named " + action.substring(5) + ".");
 					}
 				}
 			} 
