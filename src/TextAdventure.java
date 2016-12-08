@@ -59,8 +59,6 @@ public class TextAdventure {
 			}
 			
 			System.out.println(badGuy.makeNoise(pc));
-			System.out.println();
-			
 			
 			//Special messages (may delete later)
 			if (pc.position.equals(new Point(13, 13))) {

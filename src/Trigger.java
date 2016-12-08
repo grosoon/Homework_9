@@ -20,16 +20,17 @@ public class Trigger extends Item{
 		Random rand = new Random();
 		int maxX = player.highestX;
 		int maxY = player.highestY;
-		player.position = new Point(rand.nextInt(maxX), rand.nextInt(maxY));
+		player.position.x =  rand.nextInt(maxX);
+		player.position.y = rand.nextInt(maxY);
 		String known = "an unfamiliar room.";
 		if(map.containsKey(player.position)){
 			known = "a familiar room.";
 		}
 		
 		
-		return "You pick up the " + name + "and suddenly " + 
+		return "You pick up the " + name + " and suddenly\n" + 
 		TRANSPORTS[rand.nextInt(TRANSPORTS.length)] + 
-		". You find yourself in " + known;
+		".\n You find yourself in " + known;
 	}
 	
 	//creates an item that triggers the locking or unlocking of a door
