@@ -125,6 +125,12 @@ public class TextAdventure {
 			} else if (pc.position.equals(new Point(0, 0))) {
 				System.out.println("This is the room containing the exit to the mansion, and is"
 						+ " the located in the southwest corner.");
+			} else if (pc.position.x == 0) {
+				System.out.println("This room is along the western side of the mansion, "
+						+ "attemptimng to go west will result in waiting.");
+			} else if (pc.position.y == 0) {
+				System.out.println("This room is along the southern side of the mansion, "
+						+ "attemptimng to go south will result in waiting.");
 			}
 			System.out.println();
 
