@@ -13,15 +13,18 @@ public class TextAdventure {
 	private static int cooldown;
 	private static Player pc;
 	private static int turns;
-	private static final String[] ROOMNAMES = { "dining room", "bathroom", "bedroom", "living room", "guest bedroom",
-			"treasure vault", "ballroom", "great hall", "hallway", "kitchen", "pantry", "study", "armory", "dungeon",
-			"great staircase", "library", "mystery room", "nursery", "playroom", "theatre", "foyer", "sauna", "baths",
-			"courtyard", "gardens", "gallery", "satuary", "coat room", "broom closet", "laundry room", "workshop",
-			"TV room", "sun room", "den", "alcove", "assembly room", "antechamber", "auditorium", "family room",
-			"cloakroom", "common room", "computer lab", "drawing room", "great room", "electrical room", "lumber room",
-			"recreation room", "refreshment room", "secret passage", "safe room", "servents room",
-			"sensitive compartmented information facility", "showroom", "small office", "large office", "utility room",
-			"throne room", "torture room", "toolroom", "vestry", "waiting room", "wiring closet" };
+	private static final String[] ROOMNAMES = { "dining room", "bathroom", "bedroom", "living room"
+			, "guest bedroom", "treasure vault", "ballroom", "great hall", "hallway", "kitchen", 
+			"pantry", "study", "armory", "dungeon", "great staircase", "library", "mystery room",
+			"nursery", "playroom", "theatre", "foyer", "sauna", "baths",
+			"courtyard", "gardens", "gallery", "satuary", "coat room", "broom closet", 
+			"laundry room", "workshop", "TV room", "sun room", "den", "alcove", "assembly room", 
+			"antechamber", "auditorium", "family room", "cloakroom", "common room", "computer lab",
+			"drawing room", "great room", "electrical room", "lumber room", "recreation room", 
+			"refreshment room", "secret passage", "safe room", "servents room", 
+			"sensitive compartmented information facility", "showroom", "small office",
+			"large office", "utility room", "throne room", "torture room", "toolroom", "vestry",
+			"waiting room", "wiring closet" };
 
 	public static void main(String[] args) {
 		/*
@@ -54,10 +57,12 @@ public class TextAdventure {
 				+ " it back to the room that you started in.");
 		System.out.println("The killer is constantly trying to find you. If the killer ends up"
 				+ " in the same room as you, it's game over.");
-		System.out.println("Using items can sometimes open up secret passages or change your " + "abilities.");
+		System.out.println("Using items can sometimes open up secret passages or change your " 
+				+ "abilities.");
 		System.out.println("Attacking the turn before the killer enters the room lets you fend"
 				+ " them off, but if you do there is a cooldown period.");
-		System.out.println("Commands:\n-Look at [item]\n-Look at inventory\n-Pick up [item]\n" + "-Attack\n-Wait");
+		System.out.println("Commands:\n-Look at [item]\n-Look at inventory\n-Pick up [item]\n" 
+				+ "-Attack\n-Wait");
 		System.out.println("Inventory Specific Commands (only usable when looking at inventory):"
 				+ "\n-Use [item]\n-Drop [item]\n-Exit");
 		System.out.println();
@@ -90,18 +95,20 @@ public class TextAdventure {
 			} else if (attack) {
 				if (pc.position.x == badGuy.position.x && pc.position.y == badGuy.position.y) {
 					System.out.println("...Because the killer is in the room with you!\n"
-							+ "He lunges at you, but despite your pounding heart \nand shaking arms you"
-							+ " manage to hold him off!\nYou're not sure you" + " can hold him off again, though...");
+							+ "He lunges at you, but despite your pounding heart \nand shaking "
+							+ "arms you manage to hold him off!\nYou're not sure you" 
+							+ " can hold him off again, though...");
 					badGuy.stun();
 				} else {
 					System.out.println("You are sure you hear the killer comming into the room"
-							+ "\nso you charge a dark shape you see in the room.\n"
-							+ "unfortuneatly, it is just a wardrobe, which you slam into,\nknocking"
-							+ " yourself to the ground. \n You dont feel quite as strong as you did before.\n"
-							+ "You dont think you can risk another attack attempt for a while");
+							+ "\nso you charge a dark shape you see in the room.\n unfortunately,"
+							+ " it is just a wardrobe, which you slam into,\nknocking yourself "
+							+ "to the ground. \n You don't feel quite as strong as you did "
+							+ "before.\n You dont think you can risk another attack attempt for "
+							+ "a while");
 				}
 				cooldown = 5;
-				
+
 			}
 			if (cooldown > 0) {
 				cooldown--;
@@ -162,7 +169,8 @@ public class TextAdventure {
 					}
 
 				} else if (action.substring(0, 7).toLowerCase().equals("look at")) {
-					if (action.length() == 17 && action.substring(8).toLowerCase().equals("inventory")) {
+					if (action.length() == 17 && 
+							action.substring(8).toLowerCase().equals("inventory")) {
 						lookAtInventory(pc, input, badGuy);
 					} else {
 						boolean done = false;
@@ -173,7 +181,8 @@ public class TextAdventure {
 							}
 						}
 						if (!done) {
-							System.out.println("There was no item named " + action.substring(8) + ".");
+							System.out.println("There was no item named " + 
+									action.substring(8) + ".");
 						}
 					}
 				} else if (action.substring(0, 2).toLowerCase().equals("go")) {
@@ -292,7 +301,8 @@ public class TextAdventure {
 	private static void lose() {
 		System.out.println("...the killer is in the room with you!");
 		if (cooldown > 0) {
-			System.out.println("You desperately try to fend them off, but you're too tired from last" + " time!");
+			System.out.println("You desperately try to fend them off, but you're too tired from "
+					+ "last time!");
 		}
 		System.out.println();
 		System.out.println("W H A T   A   T E R R I B L E   F A T E");

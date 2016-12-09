@@ -54,12 +54,15 @@ public class Enemy {
 			}
 
 			position.translate(dx, dy);
-			System.out.printf("enemy location: %d, %d\n", position.x, position.y);
+			//System.out.printf("enemy location: %d, %d\n", position.x, position.y);
 		} else {
 			stunned--;
 		}
 	}
 
+	/*
+	 * Makes audible noises if nearby.
+	 */
 	public String makeNoise(Player p) {
 		if (noise <= 2) {
 			if (position.distance(p.position) <= noise) {

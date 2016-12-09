@@ -20,6 +20,9 @@ public class Player {
 		alive = true;
 	}
 	
+	/*
+	 * Moves the player in a direction, and keeps them in game bounds.
+	 */
 	public void move(int dir){
 		switch(dir){
 		case 0:
@@ -63,7 +66,8 @@ public class Player {
 	
 	public String remove(Item i){
 		if(inventory.remove(i)){
-			return "You drop the " + i.name + ", but when you look for where it fell you can't find it.";
+			return "You drop the " + i.name + ", but when you look for where it fell you "
+					+ "can't find it.";
 		} else {
 			return "You dont have that item";
 		}

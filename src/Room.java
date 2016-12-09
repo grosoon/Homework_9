@@ -34,6 +34,9 @@ public class Room {
 		}
 	}
 	
+	/*
+	 * removes an item
+	 */
 	public void remove(Item i){
 		Item[] temp = new Item[items.length - 1];
 		int index = 0;

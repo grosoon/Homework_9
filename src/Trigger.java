@@ -1,13 +1,12 @@
 import java.awt.Point;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 public class Trigger extends Item{
 	public static final String[] NAMES = {"vase", "pouch", "orb", "ball", "lamp", 
 			"paper weight", "plate", "cup", "bottle", "candlestick", "book", "key"};
-	public static final String[] TRANSPORTS = {"fall down a slide", "trip through a secret passage", 
-			"pass out and wake up after feeling yourself dropped to the floor",
+	public static final String[] TRANSPORTS = {"fall down a slide", "trip through a secret passage" 
+			, "pass out and wake up after feeling yourself dropped to the floor",
 			"go blind and run through the house in panic, eventually regaining your vision upon "
 			+ "stopping"};
 	
@@ -17,6 +16,9 @@ public class Trigger extends Item{
 		name = applyAdjectives();
 	}
 	
+	/*
+	 * Picks up an item that transports the player
+	 */
 	public String pickUp(Player player, Map<Point, Room> map){
 		player.addToInventory(this);
 		Random rand = new Random();
