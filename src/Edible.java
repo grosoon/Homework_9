@@ -45,6 +45,8 @@ public class Edible extends Item{
 			effect = "you can feel your senses hightening.";
 		}
 		// returns message	
+		System.out.println(e.noise);
 		return "You eat the " + name + " and " + effect;
+		
 	}
 }
