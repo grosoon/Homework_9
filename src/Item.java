@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.awt.Point;
 
@@ -37,7 +38,7 @@ public class Item {
 	 * 
 	 */
 	
-	public String pickUp(Player player, HashMap<Point, Room> map){
+	public String pickUp(Player player, Map<Point, Room> map){
 		player.addToInventory(this);
 		return "You pick up the " + name + " and put it in your pocket";
 	}

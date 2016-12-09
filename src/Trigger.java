@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Trigger extends Item{
@@ -15,12 +16,12 @@ public class Trigger extends Item{
 		name = applyAdjectives();
 	}
 	
-	public String pickUp(Player player, HashMap<Point, Room> map){
+	public String pickUp(Player player, Map<Point, Room> map){
 		player.addToInventory(this);
 		Random rand = new Random();
 		int maxX = player.highestX;
 		int maxY = player.highestY;
-		player.position = new Point(rand.nextInt(maxX), rand.nextInt(maxY));
+		player.position.setLocation(rand.nextInt(maxX), rand.nextInt(maxY));
 		String known = "an unfamiliar room.";
 		if(map.containsKey(player.position)){
 			known = "a familiar room.";

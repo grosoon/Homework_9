@@ -17,6 +17,7 @@ public class TextAdventure {
 		/*
 		 * This sets up the initial gamestate.
 		 */
+		
 		Random rand = new Random();
 		int turns = 0;
 		input = new Scanner(System.in);
